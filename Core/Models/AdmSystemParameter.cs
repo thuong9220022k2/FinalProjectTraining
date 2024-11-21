@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    internal class AdmSystemParameter : BaseModel
+    public class AdmSystemParameter : BaseModel
     {
         public int system_parameter_id { get; set; }
         public string name { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    internal class ServiceResult
+    public class ServiceResult
     {
         public bool success { get; set; }
         public string message { get; set; }

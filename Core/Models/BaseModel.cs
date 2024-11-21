@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
-    internal class BaseModel
+    public class BaseModel
     {
         public string created_by { get; set; }
         public DateTime created_dtg { get; set; }

@@ -11,7 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-
+using Core.Interfaces.Service;
+using Core.Interfaces.Infrastructure;
+using Core.Services;
+using Infra.Repos;
 namespace Final
 {
     public class Startup
@@ -32,6 +35,9 @@ namespace Final
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Final", Version = "v1" });
             });
+            services.AddScoped<IAdmTimeSheetService, AdmTimeSheetService>();
+            services.AddScoped<IAdmTimeSheetRepo, AdmTimeSheetRepo>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +49,10 @@ namespace Final
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Final v1"));
             }
+            app.UseCors(builder => builder
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
