@@ -9,10 +9,10 @@ namespace Core.Interfaces.Infrastructure
     public interface IAdmTimeSheetRepo
     {
         public Task<IEnumerable<AdmTimeSheetModel>> GetAllEntitiesByFilter(FilterResult filter);
-        //public Task<Entity> GetEntityById(int id);
-        //public Task<Entity> AddEntity(AdmSystemParameter entity);
-        //public Task<Entity> UpdateEntity(AdmSystemParameter entity);
-        //public Task<Entity> DeleteEntity(int id);
+        public Task<AdmTimeSheetModel> GetEntityById(int id);
+        public Task<bool> AddEntity(AdmTimeSheetModel entity);
+        public Task<bool> UpdateEntity(AdmTimeSheetModel entity);
+        public Task<bool> DeleteEntity(int id);
 
     }
 }

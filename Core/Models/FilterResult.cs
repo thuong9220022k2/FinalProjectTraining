@@ -8,24 +8,30 @@ namespace Core.Models
 {
     public class FilterResult
     {
-        public string? projectId { get; set; }
-        public string? createdDate { get; set; }
-        public string? actualStartDate { get; set; }
+        public string? project_id { get; set; }
+        public string? created_date { get; set; }
+        public string? actual_start_date { get; set; }
         public string? status { get; set; }
         public string? name { get; set; }
-        public string? actualPercentComplete { get; set; }
-        public string? offset { get; set; }
+        public string? actual_percent_complete { get; set; }
         public string? limit { get; set; }
 
-        public FilterResult(string projectId, string createdDate, string actualStartDate, string status, string actualPercentComplete, string name, string offset, string limit)
+        public FilterResult(
+            string projectId,
+            string createdDate,
+            string actualStartDate,
+            string status,
+            string actualPercentComplete,
+            string name, 
+            string limit
+            )
         {
-            this.projectId = projectId;
-            this.createdDate = createdDate;
-            this.actualStartDate = actualStartDate;
+            this.project_id = projectId;
+            this.created_date = createdDate;
+            this.actual_start_date = actualStartDate;
             this.status = status;
-            this.actualPercentComplete = actualPercentComplete;
+            this.actual_percent_complete = actualPercentComplete;
             this.name = name;
-            this.offset = offset;
             this.limit = limit;
         }
 

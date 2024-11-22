@@ -23,7 +23,7 @@ namespace Final.Controllers
         #endregion
 
         #region methods
-        [HttpGet("filter")]
+        [HttpGet]
         public async Task<IActionResult> GetAllEntitiesByFilter(
             [FromQuery(Name = "projectId")] string projectId,
             [FromQuery(Name = "createdDate")] string createdDate,
@@ -31,12 +31,11 @@ namespace Final.Controllers
             [FromQuery(Name = "status")] string status,
             [FromQuery(Name = "name")] string name,
             [FromQuery(Name = "actualPercentComplete")] string actualPercentComplete,
-            [FromQuery(Name = "offset")] string offset,
             [FromQuery(Name = "limit")] string limit
         )
         {
             try {
-                var filterResult = new FilterResult(projectId, createdDate, actualStartDate, status, name, actualPercentComplete,offset,limit);
+                var filterResult = new FilterResult(projectId, createdDate, actualStartDate, status, actualPercentComplete, name,limit);
                 var result = await admTimeSheetService.GetAllEntitiesByFilter(filterResult);
                 return Ok(result);
             }
@@ -45,9 +44,58 @@ namespace Final.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetEntityById(int id)
+        {
+            try
+            {
+                var result = await admTimeSheetService.GetEntityById(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddEntity(AdmTimeSheetModel entity)
+        {
+            try { 
+                var result = await admTimeSheetService.AddEntity(entity);
+                return Ok(result);
+            
+            }catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateEnity(AdmTimeSheetModel entity)
+        {
+            try {
+                var result = await admTimeSheetService.UpdateEntity(entity);
+                return Ok(result);
+            }catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteEntity(int id)
+        {
+            try
+            {
+                var result = await admTimeSheetService.DeleteEntity(id);
+                return Ok(result);
+            }catch(Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
+        }
         #endregion
-
-
 
     }
 }
